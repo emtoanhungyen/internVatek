@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a7303c08cd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <title>Band</title>
+</head>
+
+<body>
+    <div class="body">
+        <!-- Navigation -->
+        <div class="header">
+            <div id="nav" class="navigation">
+                <a href="#">HOME</a>
+                <a class="mb" href="#band">BAND</a>
+                <a class="mb" href="#tour">TOUR</a>
+                <a class="mb" href="#contact">CONTACT</a>
+                <div class="navc2 mb">
+                    <a href="#">MORE</a>
+                    <div class="subnav">
+                        <a href="#">Merchandise</a>
+                        <a href="#">Merchandise</a>
+                        <a href="#">Merchandise</a>
+                    </div>
+                </div>
+            </div>
+            <div id="bars" class="bars">
+                <i onclick="myFunction()" class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+        <!-- nav responsive  -->
+        <div id="navDemo" class="navDemo">
+            <div class="px-2">
+                <a onclick="myFunction()" href="#band">BAND</a>
+            </div>
+            <div class="px-2">
+                <a onclick="myFunction()" href="#tour">TOUR</a>
+            </div>
+            <div class="px-2">
+                <a onclick="myFunction()" href="#contact">CONTACT</a>
+            </div>
+            <div class="px-2">
+                <a onclick="myFunction()" href="#">MORE</a>
+            </div>
+        </div>
+
+        <!-- Slide show -->
+        <div id="slide" class="slide_show">
+            <img class="mySlides" src="images/chicago.jpg" alt="">
+            <img class="mySlides" src="images/la.jpg" alt="">
+            <img class="mySlides" src="images/ny.jpg" alt="">
+        </div>
+
+        <!-- The band -->
+        <div id="band" class="the_band">
+            <div id="content_the_band" class="conten_the_band">
+                <h2>THE BAND</h2>
+                <p class="p1">
+                    <i>We love music</i>
+                </p>
+                <p class="p2">
+                    We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                    in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.
+                </p>
+                <div id="box_the_band" class="box_the_band">
+                    <div id="box" class="box">
+                        <p>Name</p>
+                        <img src="images/bandmember.jpg" alt="">
+                    </div>
+                    <div id="box" class="box">
+                        <p>Name</p>
+                        <img src="images/bandmember.jpg" alt="">
+                    </div>
+                    <div id="box" class="box">
+                        <p>Name</p>
+                        <img src="images/bandmember.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tour date -->
+        <div id="tour" class="tour_date">
+            <div id="content_tour" class="content_tour">
+                <h2 class="text_white">TOUR DATES</h2>
+                <P class="text_white p1">
+                    <i>Remember to book your tickets!</i>
+                </P>
+
+                <div id="box_date" class="box_date">
+                    <div id="date" class="date">
+                        <p class="text_gray">September</p>
+                        <p class="sold_out ml-2">Sold out</p>
+                    </div>
+                    <div id="date" class="date">
+                        <p class="text_gray">October</p>
+                        <p class="sold_out ml-2">Sold out</p>
+                    </div>
+                    <div id="date aa" class="date aa">
+                        <p class="text_gray">November</p>
+                        <span>3</span>
+                    </div>
+                </div>
+
+                <div id="box_tour" class="box_tour">
+                    <div id="box1" class="box1 bg_white">
+                        <img src="images/newyork.jpg" alt="">
+                        <div class="box_tour_content">
+                            <b>
+                                New York
+                            </b>
+                            <p class="p1">Fri 27 Nov 2016</p>
+                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                            <button class="bt_send" onclick="document.getElementById('model').style.display='flex' ">
+                                Buy Tickets
+                            </button>
+                        </div>
+                    </div>
+                    <div id="box1" class="box1 bg_white">
+                        <img src="images/newyork.jpg" alt="">
+                        <div class="box_tour_content">
+                            <b>New York</b>
+                            <p class="p1">Fri 27 Nov 2016</p>
+                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                            <button class="bt_send" onclick="document.getElementById('model').style.display='flex' ">
+                                Buy Tickets
+                            </button>
+                        </div>
+                    </div>
+                    <div id="box1" class="box1 bg_white">
+                        <img src="images/newyork.jpg" alt="">
+                        <div class="box_tour_content">
+                            <b>New York</b>
+                            <p class="p1">Fri 27 Nov 2016</p>
+                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+                            <button class="bt_send" onclick="document.getElementById('model').style.display='flex' ">
+                                Buy Tickets
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div id="contact" class="contact">
+            <div id="contact_content" class="contact_content">
+                <h2 clas>CONTACT</h2>
+                <p>
+                    <i class="p1">Fan? Drop a note!</i>
+                </p>
+                <div id="content_bt" class="content_bt">
+                    <div class="contact_left">
+                        <div>
+                            <p class="">
+                                <i class="fa-solid fa-location-dot"></i>
+                                Chicago, US
+                            </p>
+                        </div>
+                        <div>
+                            <p class="">
+                                <i class="fa-solid fa-phone"></i>
+                                Phone: +00 151515
+                            </p>
+                        </div>
+                        <div>
+                            <p class="">
+                                <i class="fa-solid fa-envelope"></i>
+                                Email: mail@mail.com
+                            </p>
+                        </div>
+                    </div>
+                    <div id="contact_right" class="contact_right">
+                        <div id="contact_input" class="contact_input">
+                            <input id="input" class="input" type="text" placeholder="Name" required>
+                            <input id="input" class="input" type="email" placeholder="Email" required>
+                        </div>
+                        <input id="input-mess" class="input-mess" type="text" placeholder="Message">
+                        <button type="submit" class="bt_send">SEND</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="banner">
+            <img src="images/map.jpg" alt="">
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="content_footer">
+                <i class="fa-brands fa-square-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-square-snapchat"></i>
+                <i class="fa-brands fa-pinterest-p"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+                <p>
+                    Powered by
+                    <a href="#">w3.css</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- div model -->
+    <div id="model" class="model">
+        <div id="model-container" class="model-container">
+            <div id="header-tickets" class="header-tickets">
+                <div class="icon-x">
+                    <button onclick="document.getElementById('model').style.display='none' ">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="header-content">
+                    <p>
+                        <i class="fa-solid fa-suitcase"></i>
+                        Tickets
+                    </p>
+                </div>
+            </div>
+            <div class="content-tickets">
+                <div class="tickers-input">
+                    <div class="input-title">
+                        <label for="">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Tickets, $15 per person
+                        </label>
+                    </div>
+                    <div class="input-many">
+                        <input type="text" placeholder="How many?">
+                    </div>
+                </div>
+                <div class="tickers-input mt-2">
+                    <div class="input-title">
+                        <label for="">
+                            <i class="fa-solid fa-user"></i>
+                            Send To
+                        </label>
+                    </div>
+                    <div class="input-many">
+                        <input type="email" placeholder="Enter Email">
+                    </div>
+                </div>
+                <button class="button-pay">Pay <i class="fa-solid fa-check"></i></button>
+                <div class="tickers-close flex">
+                    <div class="close-btn">
+                        <button onclick="document.getElementById('model').style.display='none' ">
+                            Close
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="close-a">
+                        <p>
+                            Need
+                            <a href="#">help?</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    // Automatic Slideshow - change image every 4 seconds
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 3000);
+    }
+
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("show") == -1) {
+            x.className += " show";
+        } else {
+            x.className = x.className.replace(" show", "");
+        }
+    }
+
+</script>
+
+</html>

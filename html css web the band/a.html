@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/a7303c08cd.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: -8px;
+        }
+
+        .container {
+            width: 100%;
+            height: 50px;
+            background-color: black;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu {
+            margin-left: 10px;
+        }
+
+        .menu>a {
+            font-size: 16px;
+            line-height: 50px;
+            text-decoration: none;
+            color: white;
+            text-transform: uppercase;
+            padding: 0px 10px;
+        }
+
+        .bars {
+            color: white;
+            font-size: 16px;
+            line-height: 50px;
+            float: right !important;
+            margin-right: 20px;
+            display: none;
+        }
+
+        @media screen and (max-width: 800px) {
+            .bars {
+                display: block;
+            }
+        }
+
+        .white {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Home</a>
+            <a href="#">Home</a>
+            <a href="#">Home</a>
+            <a href="#">Home</a>
+        </div>
+        <div class="bars">
+            <a href="#">
+                <i class="fa-solid fa-bars white"></i>
+            </a>
+        </div>
+        <!-- <div class="navc2 mb">
+            <a href="#">MORE</a>
+            <div class="subnav">
+                <a href="#">Merchandise</a>
+                <a href="#">Merchandise</a>
+                <a href="#">Merchandise</a>
+            </div>
+        </div> -->
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "name": "Sản phẩm 2",
+      "price": "200",
+      "desc": "update",
+      "id": 2
+    },
+    {
+      "name": "Sản phẩm 3",
+      "price": "300",
+      "desc": "ok",
+      "id": 3
+    },
+    {
+      "name": "Sản phẩm 4",
+      "price": "400",
+      "desc": "ngon",
+      "id": 4
+    }
+  ]
+}
