@@ -49,6 +49,11 @@ const ListProducts = (props: Props) => {
                             <th scope="col" className="py-3 px-6">
                                 Action
                             </th>
+                            <th className='text-sm px-4 py-2 leading-none text-black hover:text-teal-500 mt-4 lg:mt-0'>
+                                <Link to='/add-product' >
+                                    Create
+                                </Link>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>

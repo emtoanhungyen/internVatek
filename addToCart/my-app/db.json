@@ -1,22 +1,40 @@
 {
   "products": [
     {
-      "name": "Sản phẩm 2",
-      "price": "200",
-      "desc": "update",
-      "id": 2
-    },
-    {
-      "name": "Sản phẩm 3",
-      "price": "300",
-      "desc": "ok",
-      "id": 3
-    },
-    {
-      "name": "Sản phẩm 4",
-      "price": "400",
-      "desc": "ngon",
+      "name": "Adidas Yeezy Boost 350 V2 Black - Non-Reflective | FU9006",
+      "price": "1990000",
+      "desc": "ngon vcl",
       "id": 4
+    },
+    {
+      "name": "Adidas Yeezy Boost 350 V2 Zebra | CP9654",
+      "price": "10290000",
+      "desc": "ngon",
+      "id": 5
+    },
+    {
+      "name": "Adidas Yeezy Boost 350 V2 Blue Tint | B37571",
+      "price": "5900000",
+      "desc": "ngon",
+      "id": 6
+    },
+    {
+      "name": "Adidas Yeezy Boost 350 V2 Cinder | FY2903",
+      "price": "1100000",
+      "desc": "ngon",
+      "id": 7
+    },
+    {
+      "name": "Dép tổ ong huyền thoại",
+      "price": "50000",
+      "desc": "ngon lắm đêys",
+      "id": 8
+    },
+    {
+      "name": "Dép cao su huyền thoại",
+      "price": "30000",
+      "desc": "ngon đếy",
+      "id": 9
     }
   ]
 }

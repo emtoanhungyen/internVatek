@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 

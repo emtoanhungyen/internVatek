@@ -9,7 +9,9 @@ const LayoutHome = (props: Props) => {
     return (
         <div>
             <Header />
-            <Outlet />
+            <div className='mt-[150px]'>
+                <Outlet />
+            </div>
             <Footer />
         </div>
     )
