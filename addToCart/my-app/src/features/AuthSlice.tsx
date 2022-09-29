@@ -3,14 +3,14 @@ import { signin, signup } from "../api/auth";
 import { UserType } from "../types/user.type";
 
 export const registerUser = createAsyncThunk(
-    'auth/register',
+    'users/register',
     async (user: UserType) => {
         const { data } = await signup(user);
         return data
     }
 )
 export const login = createAsyncThunk(
-    'auth/login',
+    'users/login',
     async (user: UserType) => {
         const { data } = await signin(user);
         return data
@@ -18,14 +18,18 @@ export const login = createAsyncThunk(
 )
 
 const AuthSlice = createSlice({
-    name: 'auth',
+    name: 'users',
     initialState: {
         value: []
     },
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(registerUser.fulfilled, (state, action) => {
-            state.value = action.payload
+            state.value = action.payload;
+        })
+        builder.addCase(login.fulfilled, (state, action) => {
+            state.value = action.payload;
+            localStorage.setItem('users', JSON.stringify(action.payload));
         })
     },
 });

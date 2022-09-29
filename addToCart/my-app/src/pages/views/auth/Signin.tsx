@@ -1,9 +1,43 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../../app/hooks';
+import { login } from '../../../features/AuthSlice';
+
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import toastr from 'toastr';
+import "toastr/build/toastr.min.css";
 
 type Props = {}
 
+type InputForm = {
+    email: string,
+    password: string
+}
+
 const Signin = (props: Props) => {
+    const navigate = useNavigate();
+    const dispath = useAppDispatch();
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema: Yup.object({
+            email: Yup.string()
+                .email('Nhập đúng định dạng email')
+                .required('Không được để trống'),
+            password: Yup.string()
+                .min(5, 'Password dài hơn 4 ký tự')
+                .max(12, 'Không dài quá 12 ký tự')
+                .required('Không được để trống'),
+        }),
+        onSubmit: (value: any) => {
+            console.log(value);
+        }
+    })
+
     return (
         <div>
             <section className="h-screen">
@@ -23,7 +57,7 @@ const Signin = (props: Props) => {
                             </Link>
                         </div>
                         <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                            <form>
+                            <form >
                                 <div className="flex flex-row items-center justify-center lg:justify-start">
                                     <p className="text-lg mb-0 mr-4">Sign in with</p>
                                     <button
@@ -53,7 +87,6 @@ const Signin = (props: Props) => {
                                             />
                                         </svg>
                                     </button>
-
                                     <button
                                         type="button"
                                         data-mdb-ripple="true"
@@ -79,18 +112,32 @@ const Signin = (props: Props) => {
                                     <input
                                         type="email"
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
                                         placeholder="Email address"
+                                        name='email'
+                                        value={formik.values.email}
+                                        onChange={formik.handleChange}
                                     />
+                                    {formik.errors.email && formik.touched.email && (
+                                        <p className='text-red-600 text-left pt-2 text-[12px]'>
+                                            {formik.errors.email}
+                                        </p>
+                                    )}
                                 </div>
                                 {/* email password */}
                                 <div className="mb-6">
                                     <input
                                         type="password"
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
                                         placeholder="Password"
+                                        name='password'
+                                        value={formik.values.password}
+                                        onChange={formik.handleChange}
                                     />
+                                    {formik.errors.password && formik.touched.password && (
+                                        <p className='text-red-600 text-left pt-2 text-[12px]'>
+                                            {formik.errors.password}
+                                        </p>
+                                    )}
                                 </div>
 
                                 <div className="text-center lg:text-left">

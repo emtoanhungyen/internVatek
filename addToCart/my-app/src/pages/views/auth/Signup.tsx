@@ -1,35 +1,51 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { registerUser } from '../../../features/AuthSlice'
-import { UserType } from '../../../types/user.type'
+
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import toastr from 'toastr';
 import "toastr/build/toastr.min.css";
 
 type Props = {}
 
-type InputForm = {
-    username: string,
-    email: string,
-    password: string
-}
-
 const Signup = (props: Props) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<InputForm>();
     const dispath = useAppDispatch();
+    const navigate = useNavigate();
 
-    const onRegister = async (data: UserType) => {
-        try {
-            await dispath(registerUser(data));
-            toastr.success("Đăng ký thành công");
-            console.log(data);
-        } catch (error) {
-            console.log(error);
-            toastr.error("Có lỗi xảy ra");
+    const formik = useFormik({
+        initialValues: {
+            username: '',
+            email: '',
+            password: '',
+        },
+        validationSchema: Yup.object({
+            username: Yup.string()
+                .min(4, 'Vui lòng nhập hơn 4 ký tự.')
+                .max(10, 'Không quá 10 ký tự')
+                .required('Không được để trống'),
+            email: Yup.string()
+                .email('Nhập đúng định dạng email')
+                .required('Không được để trống'),
+            password: Yup.string()
+                .min(5, 'Password dài hơn 4 ký tự')
+                .max(12, 'Không dài quá 12 ký tự')
+                .required('Không được để trống'),
+        }),
+        onSubmit: (value: any) => {
+            try {
+                dispath(registerUser(value));
+                toastr.success("Đăng ký thành công");
+            } catch (error) {
+                console.log(error);
+                toastr.error("Có lỗi xảy ra");
+            }
         }
-    }
+    })
+
     return (
         <div>
             <section className="h-screen">
@@ -49,7 +65,7 @@ const Signup = (props: Props) => {
                             </Link>
                         </div>
                         <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                            <form onSubmit={handleSubmit(onRegister)}>
+                            <form onSubmit={formik.handleSubmit} >
                                 <div className="text-center">
                                     <p className="text-[25px] tracking-[4px] mb-0 mr-4">Register</p>
                                 </div>
@@ -64,10 +80,16 @@ const Signup = (props: Props) => {
                                     <input
                                         type="text"
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
                                         placeholder="User Name"
-                                        {...register('username', { required: true })}
+                                        name='username'
+                                        value={formik.values.username}
+                                        onChange={formik.handleChange}
                                     />
+                                    {formik.errors.username && formik.touched.username && (
+                                        <p className='text-red-600 text-left pt-2 text-[12px]'>
+                                            {formik.errors.username}
+                                        </p>
+                                    )}
                                 </div>
 
                                 {/* input email */}
@@ -75,10 +97,16 @@ const Signup = (props: Props) => {
                                     <input
                                         type="email"
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
                                         placeholder="Email address"
-                                        {...register('email', { required: true })}
+                                        name='email'
+                                        value={formik.values.email}
+                                        onChange={formik.handleChange}
                                     />
+                                    {formik.errors.email && formik.touched.email && (
+                                        <p className='text-red-600 text-left pt-2 text-[12px]'>
+                                            {formik.errors.email}
+                                        </p>
+                                    )}
                                 </div>
 
                                 {/* email password */}
@@ -86,10 +114,16 @@ const Signup = (props: Props) => {
                                     <input
                                         type="password"
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
                                         placeholder="Password"
-                                        {...register('password', { required: true })}
+                                        name='password'
+                                        value={formik.values.password}
+                                        onChange={formik.handleChange}
                                     />
+                                    {formik.errors.password && formik.touched.password && (
+                                        <p className='text-red-600 text-left pt-2 text-[12px]'>
+                                            {formik.errors.password}
+                                        </p>
+                                    )}
                                 </div>
 
                                 <div className="text-center lg:text-left">
