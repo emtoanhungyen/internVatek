@@ -1,7 +1,8 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import ProductSlice from '../features/ProductSlice';
 import CartSlice from '../features/CartSlice';
-import SearchSlice from '../features/SearchSlice';
+import AuthSlice from '../features/AuthSlice';
+
 //import redux persist
 import { persistStore, persistReducer } from 'redux-persist'
 import localStorage from 'redux-persist/lib/storage'
@@ -17,7 +18,7 @@ export const store = configureStore({
   reducer: {
     product: ProductSlice,
     cart: persistedReducer,
-    search: SearchSlice
+    auth: AuthSlice
   },
 });
 

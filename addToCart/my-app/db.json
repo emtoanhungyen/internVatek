@@ -36,5 +36,13 @@
       "desc": "ngon đếy",
       "id": 9
     }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "123",
+      "id": 1
+    }
   ]
 }

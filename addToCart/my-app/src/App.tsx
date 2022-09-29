@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Signin from './pages/views/auth/Signin';
+import Signup from './pages/views/auth/Signup';
 import Cart from './pages/views/cart/Cart';
 import Home from './pages/views/Home';
 import LayoutHome from './pages/views/LayoutHome';
@@ -13,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        {/* Router user */}
         <Route path='/' element={<LayoutHome />}>
           <Route index element={<Home />} />
           <Route path='/products' element={<ListProducts />} />
@@ -21,6 +24,9 @@ function App() {
           <Route path='/add-product' element={<AddProduct />} />
           <Route path='/cart' element={<Cart />} />
         </Route>
+        {/* router login, register */}
+        <Route path='/login' element={<Signin />} />
+        <Route path='/register' element={<Signup />} />
       </Routes>
     </div>
   );

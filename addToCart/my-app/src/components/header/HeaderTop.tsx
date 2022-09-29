@@ -7,8 +7,8 @@ type Props = {}
 
 const HeaderTop = (props: Props) => {
     const { cart, totalItem, quantityProductInCart } = useAppSelector(item => item.cart);
-    console.log('totalItem=======', totalItem);
-    console.log('quantity--------', quantityProductInCart);
+    // console.log('totalItem=======', totalItem);
+    // console.log('quantity--------', quantityProductInCart);
 
     return (
         <div>
@@ -24,11 +24,11 @@ const HeaderTop = (props: Props) => {
                     <div className="flex items-center">
                         <div className='flex text-[12px] text-[#337ab7] px-4'>
                             <FaRegUser className='text-[#3dc8f6] text-[17px] mr-2' />
-                            <Link to=''>
+                            <Link to='/login'>
                                 Đăng nhập
                             </Link>
                             <span className='px-2'>|</span>
-                            <Link to=''>
+                            <Link to='/register'>
                                 Đăng ký
                             </Link>
                         </div>
