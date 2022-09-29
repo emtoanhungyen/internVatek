@@ -1,10 +1,15 @@
 import React from 'react'
 import { FaRegUser, FaShoppingCart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 
 type Props = {}
 
 const HeaderTop = (props: Props) => {
+    const { cart, totalItem, quantityProductInCart } = useAppSelector(item => item.cart);
+    console.log('totalItem=======', totalItem);
+    console.log('quantity--------', quantityProductInCart);
+
     return (
         <div>
             <div className='bg-white '>
@@ -27,13 +32,22 @@ const HeaderTop = (props: Props) => {
                                 Đăng ký
                             </Link>
                         </div>
-                        <div className=''>
+                        <div className='flex mr-4'>
                             <Link
-                                className="block lg:inline-block lg:mt-0 font-bold hover:text-red-500 pt-[5px]"
+                                className="block lg:inline-block lg:mt-0 font-bold hover:text-red-500 pt-[5px] pr-2"
                                 to='/cart'
                             >
                                 <FaShoppingCart className='text-[#3dc8f6] text-[17px]' />
                             </Link>
+                            {
+                                cart.length > 0 ? (<div className='mt-[2px]'>
+                                    <span
+                                        className='bg-[#3dc8f6] text-white px-[7px] rounded-full'
+                                    >
+                                        {quantityProductInCart}
+                                    </span>
+                                </div>) : ('')
+                            }
                         </div>
                     </div>
                 </div>

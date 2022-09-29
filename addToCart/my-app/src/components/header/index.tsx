@@ -43,9 +43,9 @@ const Header = (props: Props) => {
             </Link>
           </div>
         </div>
-        <div className=''>
+        {/* <div className=''>
           <Search />
-        </div>
+        </div> */}
       </nav>
       {/* div modal */}
     </div>

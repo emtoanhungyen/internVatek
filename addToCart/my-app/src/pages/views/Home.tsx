@@ -15,7 +15,6 @@ type Props = {}
 
 const Home = (props: Props) => {
     const [search, setSearch] = useState('');
-    console.log(search);
 
 
     const products = useAppSelector(item => item.product.value);
@@ -26,7 +25,6 @@ const Home = (props: Props) => {
     const addCart = (item: any) => {
         try {
             dispath(addTocart(item));
-            console.log('add to cart');
         } catch (error) {
             console.log(error);
             toastr.error("Có lỗi xảy ra.");

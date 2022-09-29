@@ -64,9 +64,9 @@ const Cart = (props: Props) => {
                             <tbody>
                                 {cart?.map((item, index) => {
                                     return <tr key={index} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                        <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <td scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {item.name}
-                                        </th>
+                                        </td>
                                         <td className="py-4 px-6">
                                             {item.price}
                                         </td>
@@ -96,18 +96,20 @@ const Cart = (props: Props) => {
                                         </td>
                                     </tr>
                                 })}
-                                <td className='w-full mt-6 mb-2 font-bold px-6 flex justify-between'>
-                                    <p className='text-[15px]'>Tổng tiền tạm tính:</p>
-                                    <span className='text-[15px]'>
-                                        {total}
-                                    </span>
-                                </td>
+                                <tr>
+                                    <td className='w-full mt-6 mb-2 font-bold px-6 flex justify-between'>
+                                        <p className='text-[15px]'>Tổng tiền tạm tính:</p>
+                                        <span className='text-[15px]'>
+                                            {total}
+                                        </span>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>) : (
                     <div>
-                        <h4 className="text-2xl font-bold dark:text-white">Giỏ hàng hiện đang trống</h4>
+                        <h4 className="text-2xl font-bold dark:text-white">Chưa có sản phẩm nào trong giỏ hàng</h4>
                     </div>
                 )
             }

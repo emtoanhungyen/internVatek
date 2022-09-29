@@ -10,12 +10,14 @@ export interface cartItem extends TypeProducts {
 export interface Cart {
     cart: cartItem[],
     total: number,
-    totalItem: number
+    totalItem: number,
+    quantityProductInCart: number
 }
 const initialState: Cart = {
     cart: [],
     total: 0,
-    totalItem: 0
+    totalItem: 0,
+    quantityProductInCart: 0
 }
 
 const CartSlice = createSlice({
@@ -31,6 +33,7 @@ const CartSlice = createSlice({
             } else {
                 state.cart.push({ ...products, quantity: 1 });
                 toastr.success(`Đã thêm ${products.name} vào giỏ hàng.`);
+                state.quantityProductInCart += 1;
             }
             state.totalItem += 1;
             state.total += Number(products.price);
@@ -44,6 +47,7 @@ const CartSlice = createSlice({
                 state.totalItem -= checkCart.quantity;
                 state.total -= Number(checkCart.price) * checkCart.quantity;
             }
+            state.quantityProductInCart -= 1;
         },
         incrementProduct: (state, action) => {
             const products = action.payload;
@@ -62,6 +66,7 @@ const CartSlice = createSlice({
                 if (check?.quantity === 0) {
                     state.cart = state.cart.filter((item) => item.id !== products);
                     toastr.success("Đã xóa sản phẩm khỏi giỏ hàng.");
+                    state.quantityProductInCart -= 1;
                 }
                 state.totalItem -= 1;
                 state.total -= Number(check.price);
