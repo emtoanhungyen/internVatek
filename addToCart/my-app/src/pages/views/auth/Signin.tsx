@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { login } from '../../../features/AuthSlice';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import toastr from 'toastr';
 import "toastr/build/toastr.min.css";
+import { UserType } from '../../../types/user.type';
+import { getAllUser } from '../../../api/auth';
 
 type Props = {}
 
@@ -18,6 +20,9 @@ type InputForm = {
 const Signin = (props: Props) => {
     const navigate = useNavigate();
     const dispath = useAppDispatch();
+    // const user = useAppSelector(item => item.auth.value);
+    // console.log('data', user);
+
 
     const formik = useFormik({
         initialValues: {
@@ -33,8 +38,20 @@ const Signin = (props: Props) => {
                 .max(12, 'Không dài quá 12 ký tự')
                 .required('Không được để trống'),
         }),
-        onSubmit: (value: any) => {
-            console.log(value);
+        onSubmit: async (value: any) => {
+            console.log('đầu vào', value.email);
+            const { data } = await getAllUser();
+            const check = data.map((item: any) => item.email);
+            console.log('list', data);
+            console.log('check', check);
+
+            if (value.email === data) {
+                console.log('đúng tài khoản');
+            } else {
+                console.log('không đúng tài khoản');
+                
+            }
+
         }
     })
 
@@ -57,7 +74,7 @@ const Signin = (props: Props) => {
                             </Link>
                         </div>
                         <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                            <form >
+                            <form onSubmit={formik.handleSubmit} >
                                 <div className="flex flex-row items-center justify-center lg:justify-start">
                                     <p className="text-lg mb-0 mr-4">Sign in with</p>
                                     <button

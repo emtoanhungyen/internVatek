@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TypeProducts } from "../types/products.type";
-
-import toastr from 'toastr';
-import "toastr/build/toastr.min.css";
+import { toast } from "react-toastify";
 
 export interface cartItem extends TypeProducts {
     quantity: number
@@ -29,10 +27,10 @@ const CartSlice = createSlice({
             const checkCart = state.cart.find((item) => item.id === products.id);
             if (checkCart) {
                 checkCart.quantity += 1;
-                toastr.success(`+ 1 ${products.name} vào giỏ hàng.`);
+                toast.success(`+ 1 ${products.name} vào giỏ hàng.`);
             } else {
                 state.cart.push({ ...products, quantity: 1 });
-                toastr.success(`Đã thêm ${products.name} vào giỏ hàng.`);
+                toast.success(`Đã thêm vào giỏ hàng.`);
                 state.quantityProductInCart += 1;
             }
             state.totalItem += 1;
@@ -42,7 +40,7 @@ const CartSlice = createSlice({
             const products = action.payload;
             const checkCart = state.cart.find((item) => item.id === products);
             state.cart = state.cart.filter((item) => item.id !== products);
-            toastr.success(`Đã xóa khỏi giỏ hàng.`);
+            toast.success('Đã xóa khỏi giỏ hàng.');
             if (checkCart) {
                 state.totalItem -= checkCart.quantity;
                 state.total -= Number(checkCart.price) * checkCart.quantity;
@@ -65,7 +63,7 @@ const CartSlice = createSlice({
                 check.quantity -= 1;
                 if (check?.quantity === 0) {
                     state.cart = state.cart.filter((item) => item.id !== products);
-                    toastr.success("Đã xóa sản phẩm khỏi giỏ hàng.");
+                    toast.success('Đã xóa sản phẩm khỏi giỏ hàng.');
                     state.quantityProductInCart -= 1;
                 }
                 state.totalItem -= 1;

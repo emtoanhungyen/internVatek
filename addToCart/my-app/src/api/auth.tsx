@@ -5,8 +5,8 @@ export const signup = (user: UserType) => {
     const url = `/users`;
     return instance.post(url, { ...user, role: 0 });
 }
-export const signin = (data: any) => {
-    const url = '/login';
+export const signin = (data: UserType) => {
+    const url = '/users';
     return instance.post(url, data);
 }
 export const getAllUser = () => {

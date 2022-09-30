@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { registerUser } from '../../../features/AuthSlice'
@@ -9,12 +9,20 @@ import * as Yup from 'yup';
 
 import toastr from 'toastr';
 import "toastr/build/toastr.min.css";
+import InputUsername from './inputUsername'
 
 type Props = {}
+
+const defaultValues = {
+    username: '',
+    email: '',
+    password: ''
+}
 
 const Signup = (props: Props) => {
     const dispath = useAppDispatch();
     const navigate = useNavigate();
+    const { control } = useForm({ defaultValues });
 
     const formik = useFormik({
         initialValues: {
@@ -77,53 +85,72 @@ const Signup = (props: Props) => {
 
                                 {/* input usename */}
                                 <div className="mb-6">
-                                    <input
-                                        type="text"
-                                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        placeholder="User Name"
+                                    {/* <InputUsername /> */}
+                                    <Controller
                                         name='username'
-                                        value={formik.values.username}
-                                        onChange={formik.handleChange}
+                                        control={control}
+                                        render={() => <div>
+                                            <input
+                                                type="text"
+                                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                placeholder="User Name"
+                                                name='username'
+                                                value={formik.values.username}
+                                                onChange={formik.handleChange}
+                                            />
+                                            {formik.errors.username && formik.touched.username && (
+                                                <p className='text-red-600 text-left pt-2 text-[12px]'>
+                                                    {formik.errors.username}
+                                                </p>
+                                            )}
+                                        </div>}
                                     />
-                                    {formik.errors.username && formik.touched.username && (
-                                        <p className='text-red-600 text-left pt-2 text-[12px]'>
-                                            {formik.errors.username}
-                                        </p>
-                                    )}
                                 </div>
 
                                 {/* input email */}
                                 <div className="mb-6">
-                                    <input
-                                        type="email"
-                                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        placeholder="Email address"
+                                    <Controller
+                                        control={control}
                                         name='email'
-                                        value={formik.values.email}
-                                        onChange={formik.handleChange}
+                                        render={() => <div>
+                                            <input
+                                                type="email"
+                                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                placeholder="Email address"
+                                                name='email'
+                                                value={formik.values.email}
+                                                onChange={formik.handleChange}
+                                            />
+                                            {formik.errors.email && formik.touched.email && (
+                                                <p className='text-red-600 text-left pt-2 text-[12px]'>
+                                                    {formik.errors.email}
+                                                </p>
+                                            )}
+                                        </div>}
                                     />
-                                    {formik.errors.email && formik.touched.email && (
-                                        <p className='text-red-600 text-left pt-2 text-[12px]'>
-                                            {formik.errors.email}
-                                        </p>
-                                    )}
                                 </div>
 
                                 {/* email password */}
                                 <div className="mb-6">
-                                    <input
-                                        type="password"
-                                        className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        placeholder="Password"
+                                    <Controller
+                                        control={control}
                                         name='password'
-                                        value={formik.values.password}
-                                        onChange={formik.handleChange}
+                                        render={() => <div>
+                                            <input
+                                                type="password"
+                                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                placeholder="Password"
+                                                name='password'
+                                                value={formik.values.password}
+                                                onChange={formik.handleChange}
+                                            />
+                                            {formik.errors.password && formik.touched.password && (
+                                                <p className='text-red-600 text-left pt-2 text-[12px]'>
+                                                    {formik.errors.password}
+                                                </p>
+                                            )}
+                                        </div>}
                                     />
-                                    {formik.errors.password && formik.touched.password && (
-                                        <p className='text-red-600 text-left pt-2 text-[12px]'>
-                                            {formik.errors.password}
-                                        </p>
-                                    )}
                                 </div>
 
                                 <div className="text-center lg:text-left">

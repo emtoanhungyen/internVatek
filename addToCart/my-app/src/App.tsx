@@ -11,6 +11,9 @@ import DetailProduct from './pages/views/products/DetailProduct';
 import EditProduct from './pages/views/products/EditProduct';
 import ListProducts from './pages/views/products/ListProducts';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <div className="App">
@@ -28,6 +31,8 @@ function App() {
         <Route path='/login' element={<Signin />} />
         <Route path='/register' element={<Signup />} />
       </Routes>
+
+      <ToastContainer />
     </div>
   );
 }

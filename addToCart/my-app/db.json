@@ -41,34 +41,34 @@
     {
       "username": "admin",
       "email": "admin@gmail.com",
-      "password": "123",
-      "role": 1,
+      "password": "12345",
+      "role": 0,
       "id": 1
     },
     {
-      "username": "hiuthuongtin",
-      "email": "hiuthuongtin@gmail.com",
-      "password": "123",
+      "username": "nguoidung",
+      "email": "nguoidung@gmail.com",
+      "password": "12345",
       "role": 0,
       "id": 2
     },
     {
-      "username": "toanpqph14805",
-      "email": "toanpqph14805@fpt.edu.vn",
-      "password": "123",
+      "username": "demo",
+      "email": "demo@gmail.com",
+      "password": "12345",
       "role": 0,
       "id": 3
     },
     {
       "username": "demo",
       "email": "demo@gmail.com",
-      "password": "123",
+      "password": "12345",
       "role": 0,
       "id": 4
     },
     {
-      "username": "formik",
-      "email": "formik@gmail.com",
+      "username": "demo",
+      "email": "demo@gmail.com",
       "password": "12345",
       "role": 0,
       "id": 5

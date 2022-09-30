@@ -10,6 +10,7 @@ import Giay1 from './../../assets/images/images-1.webp'
 import toastr from 'toastr';
 import "toastr/build/toastr.min.css";
 import { FaShoppingCart } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 
 type Props = {}
 
@@ -27,9 +28,8 @@ const Home = (props: Props) => {
             dispath(addTocart(item));
         } catch (error) {
             console.log(error);
-            toastr.error("Có lỗi xảy ra.");
+            toast.error("Có lỗi xảy ra.");
         }
-
     }
 
     return (
