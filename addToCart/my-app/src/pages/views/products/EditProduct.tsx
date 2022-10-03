@@ -8,6 +8,7 @@ import { TypeProducts } from '../../../types/products.type';
 import toastr from 'toastr';
 import "toastr/build/toastr.min.css";
 import { getOneProduct } from '../../../api/products';
+import { toast } from 'react-toastify';
 
 type Props = {}
 type InputForm = {
@@ -37,11 +38,11 @@ const EditProduct = (props: Props) => {
     const onUpdate = async (product: TypeProducts) => {
         try {
             await dispath(editProducts(product));
-            toastr.success("Update thành công");
+            toast.success("Update thành công");
             navigate('/products');
         } catch (error) {
             console.log(error);
-            toastr.error("Có lỗi xảy ra");
+            toast.error("Có lỗi xảy ra");
         }
     }
 

@@ -3,9 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { deleteProducts, getAll } from '../../../features/ProductSlice';
 import { TypeProducts } from '../../../types/products.type';
-
-import toastr from 'toastr';
-import "toastr/build/toastr.min.css";
+import { toast } from 'react-toastify';
 
 
 type Props = {}
@@ -23,11 +21,11 @@ const ListProducts = (props: Props) => {
             const confirm = window.confirm("Bạn có muốn xóa?");
             if (confirm) {
                 dispath(deleteProducts(id));
-                toastr.success("Xóa thành công.");
+                toast.success("Xóa thành công.");
             }
         } catch (error) {
             console.log(error);
-            toastr.error("Đã có lỗi xảy ra.");
+            toast.error("Đã có lỗi xảy ra.");
         }
     }
     return (
@@ -57,7 +55,7 @@ const ListProducts = (props: Props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products?.map((item: TypeProducts, index: any) => {
+                        {Array.isArray(products) && products?.map((item: TypeProducts, index: any) => {
                             return <tr key={index} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                 <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {item.name}

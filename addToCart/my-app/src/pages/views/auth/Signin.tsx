@@ -49,9 +49,7 @@ const Signin = (props: Props) => {
                 console.log('đúng tài khoản');
             } else {
                 console.log('không đúng tài khoản');
-                
             }
-
         }
     })
 

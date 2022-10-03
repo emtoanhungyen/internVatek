@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { createProducts } from '../../../features/ProductSlice'
@@ -7,58 +7,106 @@ import { TypeProducts } from '../../../types/products.type'
 
 import toastr from 'toastr';
 import "toastr/build/toastr.min.css";
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
+import { toast } from 'react-toastify'
 
 type Props = {
-
 }
 
-type InputForm = {
-  name: string,
-  price: number,
-  desc: string
+const defaultValues = {
+  name: '',
+  price: 0,
+  desc: ''
 }
 
 const AddProduct = (props: Props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<InputForm>();
+  const { control } = useForm({ defaultValues });
   const dispath = useAppDispatch();
   const navigate = useNavigate();
 
-  const onAddProduct = async (product: TypeProducts) => {
-    try {
-      await dispath(createProducts(product));
-      console.log('data', product);
 
-      navigate('/products');
-      toastr.success('Thêm sản phẩm thành công.');
-    } catch (error) {
-      console.log(error);
-      toastr.error("Đã có lỗi xảy ra.");
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      price: '',
+      desc: ''
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .required('Không được để trống.')
+        .min(4, 'Nhập hơn 4 ký tự.')
+        .max(36, 'Không quá 36 ký tự.'),
+      price: Yup.number()
+        .required('Không được để trống.')
+        .typeError('Giá phải là số cơ ông cháu ơi'),
+      desc: Yup.string()
+        .max(50, 'nhập ít thôi ông cháu')
+    }),
+    onSubmit: (values: any) => {
+      try {
+        dispath(createProducts(values));
+        console.log('data', values);
+
+        navigate('/products');
+        toast.success('Thêm thành công.');
+      } catch (error) {
+        console.log(error);
+        toast.error('Có lỗi!');
+      }
     }
-  }
+  })
 
   return (
-    <div className='w-[1000px] mx-auto mt-8' onSubmit={handleSubmit(onAddProduct)}>
-      <form>
+    <div className='w-[1000px] mx-auto mt-8'>
+      <form onSubmit={formik.handleSubmit}>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             Name
           </label>
-          <input
-            type="text"
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full 
+          <Controller
+            name='name'
+            control={control}
+            render={() => <div>
+              <input
+                type="text"
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full 
               p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-            {...register('name', { required: true })}
+                name='name'
+                value={formik.values.name}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.name && formik.touched.name && (
+                <p className='text-red-600 text-left pt-2 text-[12px]'>
+                  {formik.errors.name}
+                </p>
+              )}
+            </div>}
           />
+
         </div>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             Price
           </label>
-          <input
-            type="number"
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
-              block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-            {...register('price', { required: true })}
+          <Controller
+            name='price'
+            control={control}
+            render={() => <div>
+              <input
+                type="number"
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full 
+              p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                name='price'
+                value={formik.values.price}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.price && formik.touched.price && (
+                <p className='text-red-600 text-left pt-2 text-[12px]'>
+                  {formik.errors.price}
+                </p>
+              )}
+            </div>}
           />
         </div>
 
@@ -66,12 +114,26 @@ const AddProduct = (props: Props) => {
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             Description
           </label>
-          <input
-            type="text"
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
-              block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-            {...register('desc')}
+          <Controller
+            name='desc'
+            control={control}
+            render={() => <div>
+              <input
+                type="text"
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full 
+              p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                name='desc'
+                value={formik.values.desc}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.desc && formik.touched.desc && (
+                <p className='text-red-600 text-left pt-2 text-[12px]'>
+                  {formik.errors.desc}
+                </p>
+              )}
+            </div>}
           />
+
         </div>
         <button
           type="submit"
