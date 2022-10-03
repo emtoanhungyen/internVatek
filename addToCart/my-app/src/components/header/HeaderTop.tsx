@@ -1,14 +1,25 @@
-import React from 'react'
-import { FaRegUser, FaShoppingCart } from 'react-icons/fa'
+import React, { useEffect, useState } from 'react'
+import { FaRegUser, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { toast } from 'react-toastify'
+import { useAppSelector } from '../../app/hooks'
 
 type Props = {}
 
 const HeaderTop = (props: Props) => {
-    const { cart, totalItem, quantityProductInCart } = useAppSelector(item => item.cart);
-    // console.log('totalItem=======', totalItem);
-    // console.log('quantity--------', quantityProductInCart);
+    const { cart, quantityProductInCart } = useAppSelector(item => item.carts);
+    const [users, setUsers] = useState<any>(null);
+
+    useEffect(() => {
+        const users = JSON.parse(localStorage.getItem('auth') as string);
+        setUsers(users);
+    }, [])
+
+    const logout = () => {
+        localStorage.removeItem('auth');
+        setUsers(null)
+        toast.info('Đăng xuất thành công.');
+    }
 
     return (
         <div>
@@ -24,13 +35,22 @@ const HeaderTop = (props: Props) => {
                     <div className="flex items-center">
                         <div className='flex text-[12px] text-[#337ab7] px-4'>
                             <FaRegUser className='text-[#3dc8f6] text-[17px] mr-2' />
-                            <Link to='/login'>
-                                Đăng nhập
-                            </Link>
-                            <span className='px-2'>|</span>
-                            <Link to='/register'>
-                                Đăng ký
-                            </Link>
+                            {
+                                users === null ? (<div>
+                                    <Link to='/login'>
+                                        Đăng nhập
+                                    </Link>
+                                    <span className='px-2'>|</span>
+                                    <Link to='/register'>
+                                        Đăng ký
+                                    </Link>
+                                </div>) : (<div className='flex'>
+                                    {users.user.username}
+                                    <FaSignOutAlt
+                                        className='cursor-pointer text-[17px] text-[#3dc8f6] ml-2 mt-[2px]'
+                                        onClick={() => logout()} />
+                                </div>)
+                            }
                         </div>
                         <div className='flex mr-4'>
                             <Link

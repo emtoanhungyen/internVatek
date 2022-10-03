@@ -23,8 +23,6 @@ const EditProduct = (props: Props) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<InputForm>()
     const data = useAppSelector((item: any) => item.product.value);
     const navigate = useNavigate();
-    console.log('detailProduct', data);
-
     const dispath = useAppDispatch();
 
     useEffect(() => {

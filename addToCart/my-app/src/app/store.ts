@@ -17,7 +17,7 @@ const persistedReducer = persistReducer(persistConfig, CartSlice);
 export const store = configureStore({
   reducer: {
     product: ProductSlice,
-    cart: persistedReducer,
+    carts: persistedReducer,
     auth: AuthSlice
   },
 });

@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { login } from '../../../features/AuthSlice';
+import { useAppDispatch } from '../../../app/hooks';
+import { loginUser } from '../../../features/AuthSlice';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import toastr from 'toastr';
 import "toastr/build/toastr.min.css";
-import { UserType } from '../../../types/user.type';
-import { getAllUser } from '../../../api/auth';
+import { toast } from 'react-toastify';
 
 type Props = {}
 
@@ -22,7 +21,6 @@ const Signin = (props: Props) => {
     const dispath = useAppDispatch();
     // const user = useAppSelector(item => item.auth.value);
     // console.log('data', user);
-
 
     const formik = useFormik({
         initialValues: {
@@ -39,16 +37,14 @@ const Signin = (props: Props) => {
                 .required('Không được để trống'),
         }),
         onSubmit: async (value: any) => {
-            console.log('đầu vào', value.email);
-            const { data } = await getAllUser();
-            const check = data.map((item: any) => item.email);
-            console.log('list', data);
-            console.log('check', check);
-
-            if (value.email === data) {
-                console.log('đúng tài khoản');
-            } else {
-                console.log('không đúng tài khoản');
+            try {
+                const data = await dispath(loginUser(value));
+                toast.success('Đăng nhập thành công.');
+                navigate('/');
+                // console.log(data);
+            } catch (error) {
+                console.log(error);
+                toast.error("Có lỗi!");
             }
         }
     })

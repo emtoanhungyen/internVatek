@@ -8,7 +8,7 @@ import "toastr/build/toastr.min.css";
 type Props = {}
 
 const Cart = (props: Props) => {
-    const { cart, total } = useAppSelector(item => item.cart);
+    const { cart, total } = useAppSelector(item => item.carts);
     const dispath = useAppDispatch()
 
     const reProToCart = (id: any) => {

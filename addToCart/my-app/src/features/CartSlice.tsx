@@ -27,10 +27,10 @@ const CartSlice = createSlice({
             const checkCart = state.cart.find((item) => item.id === products.id);
             if (checkCart) {
                 checkCart.quantity += 1;
-                toast.success(`+ 1 ${products.name} vào giỏ hàng.`);
+                toast.success(`Đã thêm vào giỏ hàng.`);
             } else {
                 state.cart.push({ ...products, quantity: 1 });
-                toast.success(`Đã thêm vào giỏ hàng.`);
+                toast.success(`+ 1 ${products.name} vào giỏ hàng.`);
                 state.quantityProductInCart += 1;
             }
             state.totalItem += 1;

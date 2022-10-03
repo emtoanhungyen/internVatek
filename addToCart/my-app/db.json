@@ -21,39 +21,18 @@
   ],
   "users": [
     {
-      "username": "admin",
       "email": "admin@gmail.com",
-      "password": "12345",
-      "role": 0,
+      "password": "$2a$10$olZyU2J809qO/V04r2v07eFIzYSuVbGRxeeANwXUTPKu9lfx4mqJ6",
+      "username": "admin",
+      "role": 1,
       "id": 1
     },
     {
-      "username": "nguoidung",
       "email": "nguoidung@gmail.com",
-      "password": "12345",
+      "password": "$2a$10$EJ/C1nTHHASM8HEbtSnsI.hIiVZRohgu2abZMqn6xExzqYvsD/ZGi",
+      "username": "nguoidung",
       "role": 0,
       "id": 2
-    },
-    {
-      "username": "demo",
-      "email": "demo@gmail.com",
-      "password": "12345",
-      "role": 0,
-      "id": 3
-    },
-    {
-      "username": "demo",
-      "email": "demo@gmail.com",
-      "password": "12345",
-      "role": 0,
-      "id": 4
-    },
-    {
-      "username": "demo",
-      "email": "demo@gmail.com",
-      "password": "12345",
-      "role": 0,
-      "id": 5
     }
   ]
 }

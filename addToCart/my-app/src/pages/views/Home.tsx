@@ -4,21 +4,18 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { addTocart } from '../../features/CartSlice'
 import { getAll } from '../../features/ProductSlice'
 import { TypeProducts } from '../../types/products.type'
-// import images
-import Giay1 from './../../assets/images/images-1.webp'
-
-import toastr from 'toastr';
-import "toastr/build/toastr.min.css";
 import { FaShoppingCart } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
+// import images
+import Giay1 from './../../assets/images/images-1.webp'
 type Props = {}
 
 const Home = (props: Props) => {
     const [search, setSearch] = useState('');
 
-
     const products = useAppSelector(item => item.product.value);
+
     const dispath = useAppDispatch();
     useEffect(() => {
         dispath(getAll());

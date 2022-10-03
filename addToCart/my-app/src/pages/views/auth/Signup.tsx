@@ -3,13 +3,9 @@ import { useForm, Controller } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { registerUser } from '../../../features/AuthSlice'
-
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
-import toastr from 'toastr';
-import "toastr/build/toastr.min.css";
-import InputUsername from './inputUsername'
+import { toast } from 'react-toastify'
 
 type Props = {}
 
@@ -46,10 +42,11 @@ const Signup = (props: Props) => {
         onSubmit: (value: any) => {
             try {
                 dispath(registerUser(value));
-                toastr.success("Đăng ký thành công");
+                toast.success("Đăng ký thành công");
+                navigate('/login');
             } catch (error) {
                 console.log(error);
-                toastr.error("Có lỗi xảy ra");
+                toast.error("Có lỗi xảy ra");
             }
         }
     })

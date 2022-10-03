@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import { signin, signup, getAllUser } from "../api/auth";
 import { UserType } from "../types/user.type";
 
@@ -9,9 +10,9 @@ export const registerUser = createAsyncThunk(
         return data
     }
 )
-export const login = createAsyncThunk(
+export const loginUser = createAsyncThunk(
     'users/login',
-    async (user: UserType) => {
+    async (user: any) => {
         const { data } = await signin(user);
         return data
     }
@@ -34,14 +35,20 @@ const AuthSlice = createSlice({
         builder.addCase(registerUser.fulfilled, (state, action) => {
             state.value = action.payload;
             console.log(state.value);
-            
         })
-        builder.addCase(login.fulfilled, (state, action) => {
-            state.value = action.payload;
-            localStorage.setItem('users', JSON.stringify(action.payload));
+        builder.addCase(loginUser.fulfilled, (state, action) => {
+            try {
+                const user = action.payload
+                state.value = user;
+                localStorage.setItem('auth', JSON.stringify(user));
+            } catch (error) {
+                console.log(error);
+                toast.error('Có lỗi!');
+            }
         })
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
             state.value = action.payload;
+
         })
     },
 });
