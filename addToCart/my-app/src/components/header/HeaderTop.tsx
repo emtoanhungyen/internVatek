@@ -22,7 +22,6 @@ const HeaderTop = (props: Props) => {
         toast.info('Đăng xuất thành công.');
     }
 
-
     return (
         <div className='h-[35px]' >
             <div className='bg-white '>
@@ -112,7 +111,7 @@ const HeaderTop = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                <hr className='min:hidden' />
+                <hr className='min:hidden md:hidden lg2:hidden' />
             </div>
         </div>
     )
