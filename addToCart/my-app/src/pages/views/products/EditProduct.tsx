@@ -4,9 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { editProducts } from '../../../features/ProductSlice';
 import { TypeProducts } from '../../../types/products.type';
-
-import toastr from 'toastr';
-import "toastr/build/toastr.min.css";
 import { getOneProduct } from '../../../api/products';
 import { toast } from 'react-toastify';
 

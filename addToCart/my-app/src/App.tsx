@@ -11,7 +11,7 @@ import DetailProduct from './pages/views/products/DetailProduct';
 import EditProduct from './pages/views/products/EditProduct';
 import ListProducts from './pages/views/products/ListProducts';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -27,7 +27,9 @@ function App() {
           <Route path='/add-product' element={<AddProduct />} />
           <Route path='/cart' element={<Cart />} />
         </Route>
-        {/* router login, register */}
+        {/* Router admin */}
+
+        {/* Router login, register */}
         <Route path='/login' element={<Signin />} />
         <Route path='/register' element={<Signup />} />
       </Routes>

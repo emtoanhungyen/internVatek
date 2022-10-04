@@ -11,12 +11,14 @@ const Header = (props: Props) => {
       {/* header top */}
       <HeaderTop />
       {/*  */}
-      <nav className="flex justify-between flex-wrap bg-white p-6">
-        <div className="w-[100px]">
-          <img src={LogoHeader} />
+      <nav className="w-full flex flex-wrap bg-white p-6 lg2:p-4">
+        <div className="lg2:mx-auto">
+          <Link to='/'>
+            <img className='max-w-[100px]' src={LogoHeader} />
+          </Link>
         </div>
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-sm lg:flex-grow">
+        <div className="w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto md:hidden">
+          <div className="text-sm lg:flex-grow lg2:flex lg2:justify-center">
             <Link
               className="block mt-4 lg:inline-block lg:mt-0 text-[#5b5b5b] font-bold hover:text-red-500 mr-4"
               to='/'
@@ -43,11 +45,7 @@ const Header = (props: Props) => {
             </Link>
           </div>
         </div>
-        {/* <div className=''>
-          <Search />
-        </div> */}
       </nav>
-      {/* div modal */}
     </div>
   )
 }

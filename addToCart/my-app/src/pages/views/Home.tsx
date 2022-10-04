@@ -32,7 +32,7 @@ const Home = (props: Props) => {
     return (
         <div>
             <input className='border mt-[15px]' type="text" onChange={(e) => { setSearch(e.target.value) }} />
-            <div className='w-max grid grid-cols-4 px-[9%] py-8'>
+            <div className='w-full grid grid-cols-4 lg2:grid-cols-3 md:grid-cols-2 px-[9%] lg2:px-6 md:px-6 py-8'>
                 {Array.isArray(products) && products.filter((value: TypeProducts) => {
                     if (search == "") {
                         return value
@@ -40,8 +40,8 @@ const Home = (props: Props) => {
                         return value
                     }
                 })?.map((item: TypeProducts, index: any) => {
-                    return <div key={index} className='w-[262px] h-auto mx-6 cursor-pointer hover:opacity-[90%]'>
-                        <div className='w-[262px] h-auto'>
+                    return <div key={index} className='max-w-[260px] h-auto mx-6 cursor-pointer hover:opacity-[90%]'>
+                        <div className='max-w-[262px] h-auto'>
                             <Link to={`/products/${item.id}`}>
                                 <img src={Giay1} />
                             </Link>
@@ -50,6 +50,7 @@ const Home = (props: Props) => {
                             className='text-left py-2'
                         >
                             <Link
+                                className='md:text-[14px]'
                                 to={`/products/${item.id}`}>
                                 {item.name}
                             </Link>
@@ -60,7 +61,7 @@ const Home = (props: Props) => {
                             <span className='text-[#3dc8f6] font-[700]'>
                                 {item.price} đ
                             </span>
-                            <FaShoppingCart className='text-[#3dc8f6] text-[20px] ml-[30px]' onClick={() => addCart(item)} />
+                            <FaShoppingCart className='text-[#3dc8f6] text-[20px] ml-[30px] md:ml-2 md:text-[18px]' onClick={() => addCart(item)} />
                         </div>
                         {/* <button
                         className="w-[200px] bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border 
