@@ -1,3 +1,22 @@
 {
-    "products": []
+    "products": [
+        {
+            "name": "Product A",
+            "price": 100,
+            "desc": "ngon đấy",
+            "id": 1
+        },
+        {
+            "name": "Product B",
+            "price": 200,
+            "desc": "ngon đấy",
+            "id": 2
+        },
+        {
+            "name": "Product C",
+            "price": 300,
+            "desc": "ngon đấy",
+            "id": 3
+        }
+    ]
 }
