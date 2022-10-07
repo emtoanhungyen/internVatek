@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,10 +7,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { ProductType } from '../../../types/product.type';
-import { getAll } from '../../../features/ProductSlice';
+import { deleteProduct, getAll } from '../../../features/ProductSlice';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function createData(
     name: string,
@@ -20,17 +23,30 @@ function createData(
     return { name, price, desc };
 }
 
-
-
 type Props = {}
 
 const ProductList = (props: Props) => {
     const dispath = useAppDispatch();
     const rows = useAppSelector(item => item.product.value);
+    const [reload, setReload] = useState();
     // console.log(rows);
     useEffect(() => {
         dispath(getAll());
-    }, [])
+    }, [reload])
+
+    const onRemove = (id: any) => {
+        try {
+            const confirm = window.confirm("Bạn có muốn xóa?");
+            if (confirm) {
+                dispath(deleteProduct(id));
+                toast.info('Xóa thành công.');
+                setReload(id);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.info('Có lỗi.')
+        }
+    }
 
     return (
         <div>
@@ -41,11 +57,15 @@ const ProductList = (props: Props) => {
                             <TableCell>Name</TableCell>
                             <TableCell align="right">Price</TableCell>
                             <TableCell align="right">Desc</TableCell>
-                            <TableCell align="right">Action</TableCell>
+                            <TableCell align="right">
+                                <Link to='/add-product'>
+                                    <Button size="small">Create</Button>
+                                </Link>
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row: any) => (
+                        {Array.isArray(rows) && rows.map((row: any) => (
                             <TableRow
                                 key={row.name}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -56,7 +76,12 @@ const ProductList = (props: Props) => {
                                 <TableCell align="right">{row.price}</TableCell>
                                 <TableCell align="right">{row.desc}</TableCell>
                                 <TableCell align="right">
-                                    <button>remove</button>
+                                    <Link to={`/product/${row.id}`}>
+                                        <Button size="small">Edit</Button>
+                                    </Link>
+                                    <IconButton aria-label="delete" size="small" onClick={() => onRemove(row.id)}>
+                                        <DeleteIcon fontSize="inherit" color='primary' />
+                                    </IconButton>
                                 </TableCell>
                             </TableRow>
                         ))}

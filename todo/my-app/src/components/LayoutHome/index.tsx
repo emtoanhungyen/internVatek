@@ -10,7 +10,7 @@ const LayoutHome = (props: Props) => {
         <div>
             <Header />
             <Outlet />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }
