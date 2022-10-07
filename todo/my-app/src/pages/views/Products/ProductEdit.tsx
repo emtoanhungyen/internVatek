@@ -3,14 +3,13 @@ import Input from '@mui/material/Input';
 import { useForm, Controller } from 'react-hook-form';
 import { Button, Stack } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { Formik, Form, Field, useFormik } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { TextField } from "formik-material-ui"
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { createProduct, readProduct } from '../../../features/ProductSlice';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ProductType } from '../../../types/product.type';
 
 type Props = {}
 
