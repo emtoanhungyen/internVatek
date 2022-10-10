@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '../../../app/hooks';
 import { useNavigate } from 'react-router-dom';
-import { themProduct } from '../../../features/ProductSlice';
+import { createProduct } from '../../../features/ProductSlice';
 import { ProductType } from '../../../types/product.type';
 
 type Props = {}
@@ -44,7 +44,7 @@ const ProductAdd = (props: Props) => {
 
   const onSubmit: SubmitHandler<InputForm> = data => {
     try {
-      dispath(themProduct(data));
+      dispath(createProduct(data));
       navigate('/products')
       toast.success('Thêm thành công.');
     } catch (error) {

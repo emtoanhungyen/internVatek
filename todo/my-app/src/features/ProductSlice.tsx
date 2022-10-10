@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductType } from "../types/product.type";
 
 export interface InputType {
     id?: number,
@@ -19,17 +18,17 @@ const ProductSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        themProduct: (state, action: PayloadAction<InputType>) => {
+        createProduct: (state, action: PayloadAction<InputType>) => {
             const products = action.payload;
             state.value.push({ ...products });
             // console.log('data', action.payload);
             // console.log('state', state.value);
 
         },
-        xoaProduct: (state, action) => {
+        removeProduct: (state, action) => {
             state.value = state.value.filter((item) => item.id !== action.payload);
         },
-        suaProduct: (state, action) => {
+        updateProduct: (state, action) => {
             const product = state.value.map((item) => {
                 if (item.id === action.payload.id) {
                     return action.payload
@@ -38,11 +37,11 @@ const ProductSlice = createSlice({
             })
             state.value = product;
             console.log('tim', product);
-            
+
             console.log('action', action.payload);
 
         }
     }
 });
-export const { themProduct, xoaProduct, suaProduct } = ProductSlice.actions
+export const { createProduct, removeProduct, updateProduct } = ProductSlice.actions
 export default ProductSlice.reducer

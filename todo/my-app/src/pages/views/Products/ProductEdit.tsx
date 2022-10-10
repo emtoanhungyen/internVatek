@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ProductType } from '../../../types/product.type';
-import { suaProduct } from '../../../features/ProductSlice';
+import { updateProduct } from '../../../features/ProductSlice';
 
 type Props = {}
 type InputEdit = {
@@ -55,10 +55,15 @@ const ProductEdit = (props: Props) => {
     //         .required("Không được để trống")
     // })
     const onSubmit: SubmitHandler<ProductType> = values => {
-        dispath(suaProduct(values));
-        // console.log('edit', values);
-        
-        navigate('/products');
+        try {
+            dispath(updateProduct(values));
+            toast.info("Update thanh cong");
+            navigate('/products');
+        } catch (error) {
+            console.log(error);
+            toast.error('Co loi');
+        }
+
         // try {
         //     dispath(createProduct(values));
         //     navigate('/products')

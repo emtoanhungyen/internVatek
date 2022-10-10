@@ -13,7 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { xoaProduct } from '../../../features/ProductSlice';
+import { removeProduct } from '../../../features/ProductSlice';
 
 function createData(
     name: string,
@@ -36,7 +36,7 @@ const ProductList = (props: Props) => {
         try {
             const confirm = window.confirm("Bạn có muốn xóa?");
             if (confirm) {
-                dispath(xoaProduct(id));
+                dispath(removeProduct(id));
                 toast.info('Xóa thành công.');
             }
         } catch (error) {
