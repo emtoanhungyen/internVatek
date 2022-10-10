@@ -47,7 +47,7 @@ const AddProduct = (props: Props) => {
       try {
         dispath(createProducts(values));
         console.log('data', values);
-        navigate('/products');
+        // navigate('/products');
         toast.success('Thêm thành công.');
       } catch (error) {
         console.log(error);

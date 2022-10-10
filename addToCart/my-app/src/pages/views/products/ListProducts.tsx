@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { deleteProducts, getAll } from '../../../features/ProductSlice';
@@ -12,15 +12,17 @@ const ListProducts = (props: Props) => {
     const products = useAppSelector(item => item.product.value);
     const dispath = useAppDispatch();
     const navigate = useNavigate();
+    const [reload , setReload] = useState();
     useEffect(() => {
         dispath(getAll());
-    }, [])
+    }, [reload])
 
     const remove = (id: any) => {
         try {
             const confirm = window.confirm("Bạn có muốn xóa?");
             if (confirm) {
                 dispath(deleteProducts(id));
+                setReload(id);
                 toast.success("Xóa thành công.");
             }
         } catch (error) {
