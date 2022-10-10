@@ -11,9 +11,9 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { deleteProduct, getAll } from '../../../features/ProductSlice';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { xoaProduct } from '../../../features/ProductSlice';
 
 function createData(
     name: string,
@@ -28,19 +28,16 @@ type Props = {}
 const ProductList = (props: Props) => {
     const dispath = useAppDispatch();
     const rows = useAppSelector(item => item.product.value);
+    console.log('state tong', rows);
+    
     const [reload, setReload] = useState();
-    // console.log(rows);
-    useEffect(() => {
-        dispath(getAll());
-    }, [reload])
 
-    const onRemove = (id: any) => {
+    const onRemove = (id: number) => {
         try {
             const confirm = window.confirm("Bạn có muốn xóa?");
             if (confirm) {
-                dispath(deleteProduct(id));
+                dispath(xoaProduct(id));
                 toast.info('Xóa thành công.');
-                setReload(id);
             }
         } catch (error) {
             console.log(error);
@@ -54,7 +51,8 @@ const ProductList = (props: Props) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Name</TableCell>
+                            <TableCell>Id</TableCell>
+                            <TableCell align="right">Name</TableCell>
                             <TableCell align="right">Price</TableCell>
                             <TableCell align="right">Desc</TableCell>
                             <TableCell align="right">
@@ -71,8 +69,9 @@ const ProductList = (props: Props) => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {row.name}
+                                    {row.id}
                                 </TableCell>
+                                <TableCell align="right">{row.name}</TableCell>
                                 <TableCell align="right">{row.price}</TableCell>
                                 <TableCell align="right">{row.desc}</TableCell>
                                 <TableCell align="right">
@@ -80,7 +79,7 @@ const ProductList = (props: Props) => {
                                         <Button size="small">Edit</Button>
                                     </Link>
                                     <IconButton aria-label="delete" size="small" onClick={() => onRemove(row.id)}>
-                                        <DeleteIcon fontSize="inherit" color='primary' />
+                                        <DeleteIcon fontSize="inherit" color='error' />
                                     </IconButton>
                                 </TableCell>
                             </TableRow>

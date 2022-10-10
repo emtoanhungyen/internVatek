@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Input from '@mui/material/Input';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { Button, Stack } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { Formik, Form, Field } from 'formik';
@@ -8,40 +8,57 @@ import { TextField } from "formik-material-ui"
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { createProduct, readProduct } from '../../../features/ProductSlice';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ProductType } from '../../../types/product.type';
+import { suaProduct } from '../../../features/ProductSlice';
 
 type Props = {}
-
+type InputEdit = {
+    id?: string,
+    name: string,
+    price: number,
+    desc: string
+}
 const ProductEdit = (props: Props) => {
     const { control } = useForm();
     const dispath = useAppDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
-    const products = useAppSelector((item: any) => item.product.value);
+    const { register, handleSubmit, reset } = useForm<ProductType>();
+    const products = useAppSelector(item => item.product.value);
+    const a = products.find(item => item.id === id);
     console.log(products);
+    console.log('a', a);
+
 
     useEffect(() => {
-        dispath(readProduct(id));
+        // dispath(readProduct(id));
+        // dispath(readProduct(id));
+        // reset(a)
+        reset(a);
     }, [])
 
-    const data = {
-        name: '',
-        price: '',
-        desc: ''
-    }
-    const validate = Yup.object().shape({
-        name: Yup.string()
-            .required("Không được để trống")
-            .min(4, "Dài hơn 4 ký tự")
-            .max(24, "Nhỏ hơn 24 ký tự"),
-        price: Yup.number()
-            .required("Không được để trống")
-            .typeError("Phải là số"),
-        desc: Yup.string()
-            .required("Không được để trống")
-    })
-    const onSubmit = (values: any) => {
+    // const data = {
+    //     name: '',
+    //     price: '',
+    //     desc: ''
+    // }
+    // const validate = Yup.object().shape({
+    //     name: Yup.string()
+    //         .required("Không được để trống")
+    //         .min(4, "Dài hơn 4 ký tự")
+    //         .max(24, "Nhỏ hơn 24 ký tự"),
+    //     price: Yup.number()
+    //         .required("Không được để trống")
+    //         .typeError("Phải là số"),
+    //     desc: Yup.string()
+    //         .required("Không được để trống")
+    // })
+    const onSubmit: SubmitHandler<ProductType> = values => {
+        dispath(suaProduct(values));
+        // console.log('edit', values);
+        
+        navigate('/products');
         // try {
         //     dispath(createProduct(values));
         //     navigate('/products')
@@ -58,7 +75,25 @@ const ProductEdit = (props: Props) => {
                 <h4>Form edit</h4>
             </div>
             <div className="">
-                <Formik
+
+                <form action="" onSubmit={handleSubmit(onSubmit)}>
+                    id<input type='number' {...register('id')} />
+                    <div>
+                        <label htmlFor="">name</label>
+                        <input type="text" {...register('name')} />
+                    </div>
+                    <div>
+                        <label htmlFor="">price</label>
+                        <input type="number" {...register('price')} />
+                    </div>
+                    <div>
+                        <label htmlFor="">desc</label>
+                        <input type="text" {...register('desc')} />
+                    </div>
+                    <button type='submit'>submit</button>
+                </form>
+
+                {/* <Formik
                     initialValues={data}
                     validationSchema={validate}
                     onSubmit={onSubmit}
@@ -116,7 +151,7 @@ const ProductEdit = (props: Props) => {
                             </Form>
                         </div>
                     }}
-                </Formik>
+                </Formik> */}
             </div>
         </div>
     )
