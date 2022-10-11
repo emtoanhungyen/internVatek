@@ -29,7 +29,7 @@ const ProductList = (props: Props) => {
     const dispath = useAppDispatch();
     const rows = useAppSelector(item => item.product.value);
     console.log('state tong', rows);
-    
+
     const [reload, setReload] = useState();
 
     const onRemove = (id: number) => {
@@ -51,8 +51,7 @@ const ProductList = (props: Props) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Id</TableCell>
-                            <TableCell align="right">Name</TableCell>
+                            <TableCell>Name</TableCell>
                             <TableCell align="right">Price</TableCell>
                             <TableCell align="right">Desc</TableCell>
                             <TableCell align="right">
@@ -69,9 +68,8 @@ const ProductList = (props: Props) => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {row.id}
+                                    {row.name}
                                 </TableCell>
-                                <TableCell align="right">{row.name}</TableCell>
                                 <TableCell align="right">{row.price}</TableCell>
                                 <TableCell align="right">{row.desc}</TableCell>
                                 <TableCell align="right">

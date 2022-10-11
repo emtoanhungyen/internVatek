@@ -10,11 +10,12 @@ import { toast } from 'react-toastify';
 import { useAppDispatch } from '../../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { createProduct } from '../../../features/ProductSlice';
-import { ProductType } from '../../../types/product.type';
+import { v4 as uuid } from 'uuid';
+
 
 type Props = {}
 type InputForm = {
-  id?: number,
+  id?: string,
   name: string,
   price: number,
   desc: string
@@ -45,6 +46,8 @@ const ProductAdd = (props: Props) => {
   const onSubmit: SubmitHandler<InputForm> = data => {
     try {
       dispath(createProduct(data));
+      console.log('data',data);
+      
       navigate('/products')
       toast.success('Thêm thành công.');
     } catch (error) {
@@ -68,7 +71,7 @@ const ProductAdd = (props: Props) => {
       </div>
       <div className="">
         <form action="" onSubmit={handleSubmit(onSubmit)}>
-          id<input type='number' {...register('id')} />
+          {/* id<input type='text' {...register('id')} /> */}
           <div>
             <label htmlFor="">name</label>
             <input type="text" {...register('name')} />

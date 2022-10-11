@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {v4 as uuid} from 'uuid';
 
 export interface InputType {
-    id?: number,
+    id?: string,
     name: string,
     price: number,
     desc: string
@@ -20,7 +21,7 @@ const ProductSlice = createSlice({
     reducers: {
         createProduct: (state, action: PayloadAction<InputType>) => {
             const products = action.payload;
-            state.value.push({ ...products });
+            state.value.push({ ...products, id: uuid() });
             // console.log('data', action.payload);
             // console.log('state', state.value);
 
