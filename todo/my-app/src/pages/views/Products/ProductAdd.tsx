@@ -1,17 +1,12 @@
 import React from 'react'
-import Input from '@mui/material/Input';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { Button, Stack } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import { Formik, Form, Field, useFormik } from 'formik';
-import { TextField } from "formik-material-ui"
-import * as Yup from 'yup';
+import TextField from '@mui/material/TextField';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '../../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { createProduct } from '../../../features/ProductSlice';
-import { v4 as uuid } from 'uuid';
-
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 type Props = {}
 type InputForm = {
@@ -46,8 +41,8 @@ const ProductAdd = (props: Props) => {
   const onSubmit: SubmitHandler<InputForm> = data => {
     try {
       dispath(createProduct(data));
-      console.log('data',data);
-      
+      console.log('data', data);
+
       navigate('/products')
       toast.success('Thêm thành công.');
     } catch (error) {
@@ -72,19 +67,19 @@ const ProductAdd = (props: Props) => {
       <div className="">
         <form action="" onSubmit={handleSubmit(onSubmit)}>
           {/* id<input type='text' {...register('id')} /> */}
-          <div>
-            <label htmlFor="">name</label>
-            <input type="text" {...register('name')} />
-          </div>
-          <div>
-            <label htmlFor="">price</label>
-            <input type="number" {...register('price')} />
-          </div>
-          <div>
-            <label htmlFor="">desc</label>
-            <input type="text" {...register('desc')} />
-          </div>
-          <button type='submit'>submit</button>
+          <Stack spacing={2} >
+            <div>
+              <TextField fullWidth id="outlined-basic" label="Nhập name" variant="outlined"  {...register('name')} />
+            </div>
+            <div>
+              <TextField fullWidth id="outlined-basic" label="Nhập price" variant="outlined" {...register('price')} />
+            </div>
+            <div>
+              <TextField fullWidth id="outlined-basic" label="Nhập desc" variant="outlined"  {...register('desc')} />
+            </div>
+            <Button type='submit' variant="outlined">Create</Button>
+          </Stack>
+
         </form>
         {/* <Formik
           initialValues={data}

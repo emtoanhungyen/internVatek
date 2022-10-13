@@ -1,6 +1,7 @@
-import { Space, Table, Tag } from 'antd';
+import { Space, Switch, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import React from 'react'
+import React, { useState } from 'react'
+import { useThemeSwitcher } from 'react-css-theme-switcher';
 
 type Props = {}
 interface DataType {
@@ -91,9 +92,23 @@ const data: DataType[] = [
   },
 ];
 const Home = (props: Props) => {
-  
+  const [isDarkMode, setIsDarkMode] = useState<boolean>();
+  const { switcher, themes } = useThemeSwitcher();
+
+  function toggleTheme(isChecked: boolean) { // added
+    setIsDarkMode(isChecked);
+    switcher({ theme: isChecked ? themes.dark : themes.light });
+  };
   return (
     <div>
+      <div className="main fade-in"> // added
+        <Switch
+          checkedChildren="🌜"
+          unCheckedChildren="🌞"
+          checked={isDarkMode}
+          onChange={toggleTheme}
+        />
+      </div>
       <Table dataSource={data} columns={columns} />;
     </div>
   )
