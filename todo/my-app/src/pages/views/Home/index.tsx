@@ -21,14 +21,14 @@ const columns: ColumnsType<DataType> = [
   {
     title: 'Age',
     dataIndex: 'age',
-    render(text, record) {
-      return {
-        props: {
-          style: {background: "red"}
-        },
-        children: <>{text}</>
-      }
-    }
+    // render(text, record) {
+    //   return {
+    //     props: {
+    //       style: {background: "red"}
+    //     },
+    //     children: <>{text}</>
+    //   }
+    // }
   },
   {
     title: 'Address',
@@ -94,7 +94,7 @@ const Home = (props: Props) => {
   
   return (
     <div>
-      <Table className='' style={{backgroundColor:'red', color: 'red'}} dataSource={data} columns={columns} />;
+      <Table dataSource={data} columns={columns} />;
     </div>
   )
 }

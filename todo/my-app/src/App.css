@@ -37,6 +37,6 @@
     transform: translateY(0px);
   }
 }
-thead[class*="ant-table-thead"] th {
+/* thead[class*="ant-table-thead"] th {
   background-color: red !important;
-}
+} */

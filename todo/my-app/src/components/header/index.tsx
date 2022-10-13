@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -12,6 +12,8 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import { useThemeSwitcher } from "react-css-theme-switcher";
+import { Switch } from 'antd';
 
 type Props = {}
 
@@ -23,6 +25,13 @@ const Header = (props: Props) => {
     };
     const handleClose = () => {
         setAnchorEl(null);
+    };
+    const [isDarkMode, setIsDarkMode] = useState<boolean>();
+    const { switcher, themes } = useThemeSwitcher();
+
+    function toggleTheme(isChecked: boolean) { // added
+        setIsDarkMode(isChecked);
+        switcher({ theme: isChecked ? themes.dark : themes.light });
     };
     return (
         <div>
@@ -114,6 +123,14 @@ const Header = (props: Props) => {
                         Logout
                     </MenuItem>
                 </Menu>
+                <div className="main fade-in"> // added
+                <Switch
+                    checkedChildren="🌜"
+                    unCheckedChildren="🌞"
+                    checked={isDarkMode}
+                    onChange={toggleTheme}
+                />
+            </div>
             </React.Fragment>
         </div>
     )
